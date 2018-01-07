@@ -48,19 +48,19 @@
   <h1>With Worker</h1>
   <img src="./sample.gif">
   <div class="form-control">
-      <input type="text" id="input" class="input" value="1000000000" />
-    </div>
-    <div class="form-control">
-      <button class="button" onClick="doSomeHeavyStuff()">Do some heavy stuff</button>
-      <div id="result"></div>
-    </div>
+    <input type="text" id="input" class="input" value="1000000000" />
+  </div>
+  <div class="form-control">
+    <button class="button" onClick="doSomeHeavyStuff()">Do some heavy stuff</button>
+    <div id="result"></div>
+  </div>
   <script>
     function doSomeHeavyStuff() {
       const input = parseInt(document.getElementById('input').value, 10);
       worker.postMessage(input);
     }
 
-    var worker = new Worker('webworker.js');
+    const worker = new Worker('webworker.js');
     worker.addEventListener('message', function(e) {
       document.getElementById('result').innerText = `Result: ${e.data}`;
     }, false);
